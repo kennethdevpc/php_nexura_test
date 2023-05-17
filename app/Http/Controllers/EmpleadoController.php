@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\Empleado;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -24,7 +26,9 @@ class EmpleadoController extends Controller
     public function create()
     {
         //
-        return view('empleado.create');
+        $area = Area::all();
+        $rol = Role::all();
+        return view('empleado.create',compact('area'),compact('rol'));
 
     }
 
@@ -37,15 +41,15 @@ class EmpleadoController extends Controller
         $campos = [
             'nombre'=>'required|string|max:255',
             'email'=>'required|email',
-            'sexo'=>'required|string|max:2',
+            'sexo'=>'required|string|max:1',
             'area_id'=>'required|integer|max:11',
-            'boletin'=>'required|string|max:11',
             'descripcion'=>'required|string|max:255',
         ];
         $mensaje = [
             'required'=>'El :attribute es requerido',
             'descripcion.required'=>'La :attribute es requerida'
         ];
+
 
         $this->validate($request,$campos,$mensaje);
 
@@ -70,8 +74,10 @@ class EmpleadoController extends Controller
     public function edit($id)
     {
         //
+        $rol = Role::all();
+        $area = Area::all();
         $empleado = Empleado::findOrFail($id);
-        return view('empleado.edit', compact('empleado'));
+        return view('empleado.edit', compact('empleado'),compact('area'),compact('rol'));
     }
 
     /**
@@ -80,21 +86,38 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $campos = [
+
+
+        $camposx = [
             'nombre'=>'required|string|max:255',
             'email'=>'required|email',
-            'sexo'=>'required|string|max:2',
+            'sexo'=>'required|string|max:1',
             'area_id'=>'required|integer|max:11',
-            'boletin'=>'required|string|max:11',
             'descripcion'=>'required|string|max:255',
         ];
         $mensaje = [
             'required'=>'El :attribute es requerido',
             'descripcion.required'=>'La :attribute es requerida'
         ];
-        $this->validate($request,$campos,$mensaje);
-
+        $this->validate($request,$camposx,$mensaje);
         $dataEmployee = request()->except('_token', '_method');
+
+        if ($request->boletin){
+            if($request->boletin=="1"){
+                $request->boletin=1;
+                $dataEmployee = json_decode(json_encode($dataEmployee));
+                $dataEmployee->boletin=1;
+            }else{
+                $request->boletin=0;
+                $dataEmployee = json_decode(json_encode($dataEmployee));
+                $dataEmployee->boletin=0;
+            }
+        }else{
+            $request->boletin=0;
+            $dataEmployee = json_decode(json_encode($dataEmployee));
+            $dataEmployee->boletin=0;
+        }
+        $dataEmployee=get_object_vars($dataEmployee);
         Empleado::where('id','=', $id)->update($dataEmployee);
         $empleado = Empleado::findOrFail($id);
         return redirect('empleado')->with('mensaje','!se actualizo el empleado correctamente¡');
