@@ -74,13 +74,19 @@ para ejecutar el archivo solo debe de instalar las dependencias, debe de dirijir
 Para instalar el composer
 
 ```
-Composer install
+sudo Composer install
 ```
 
 para dependencias adicionales:
 
 ```
-npm install
+sudo npm install
+```
+
+para dependencias si no permite con el anterior comando:
+
+```
+sudo npm install --force
 ```
 
 y una vez se tengan instaladas las dependencias ejecutar la aplicacion,
@@ -89,13 +95,40 @@ y una vez se tengan instaladas las dependencias ejecutar la aplicacion,
 npm run dev
 ```
 
--para visualizar el proyecto se ejectuto la sigueinte ruta en el nevegador:
+si desea ejecutarlo en el servidor local ejecute:
+
+```
+php artisan serv
+```
+
+si por algun motivo le exije instalar una key, ejectute el sigueinte comando (y vuelva a jecutar el comando anterior (php artisan serv)):
+
+```
+ php artisan key:generate
+```
+
+de esta manera se podra redirijir a donde el servidor lo deje, generalmente aparece algo como:
+
+```
+ INFO  Server running on [http://127.0.0.1:8000].
+```
+
+asi que si va a su navegador con este link [http://127.0.0.1:8000] va a tener acceso al proyecto, en donde debe registrarse y luego loguearse
+
+---
+
+**forma2**
+-para visualizar el proyecto se ejectuto la siguinte ruta en el nevegador (de esta manera se realiza cuando se coloca en la carpeta `htdocs`):
 
 ```
 http://localhost:82/empleado/public
 ```
 
-ya que para ejecutar se utilizo la herramienta xampp y se creo el proyecto en nuestra carpeta htdocs.
+Donde `empleado` es el nombre de la carpeta donde se guarda el proyecto, sin embargo si lo descarga desde este repositorio va a tener un nombre similar a `php_nexura_test-master`
+
+nota: para ejecutar se utilizo la herramienta xampp y se creo el proyecto en nuestra carpeta htdocs puede buscarla con el comando: `cd /opt/lampp/htdocs`
+path de referencia:
+`/opt/lampp/htdocs/{nombre del proyecto descargado}`.
 
 <hr/>
 
