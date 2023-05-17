@@ -47,7 +47,13 @@ donde `DB_PORT` asegurese que sea el indicado usualmente se utiliza: `3306`
 
 ## BoilerPlate
 
-Adicionalmente será necesario que creen desde Mysql una base de datos llamada `sistemaempleado` si desea usar nuestra fuente de base de datos sino puede colocar la deseada
+Adicionalmente será necesario que creen desde Mysql una base de datos llamada `sistemaempleado` si desea usar nuestra fuente de base de datos sino puede colocar la deseada.
+
+-   EN el proyecto se encuentra la base de datos que se utilizo, puee usarla si desea, se encuentra en la carpeta:
+
+```
+./BaseDeDatosEjemplo
+```
 
 ## Enunciado
 
