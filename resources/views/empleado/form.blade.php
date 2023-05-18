@@ -103,7 +103,39 @@
 
     <br>
 
+    <div class="form-group d-flex flex-row">
+        <label class="col-lg-2 px-3 text-lg-end" for="role">Roles</label>
+        <div class="form-check d-flex flex-wrap">
+         {{--   <div class="form-check col-lg-4">
+                <input class="form-check-input" name="opcion[]" type="checkbox" value="{{4}}"   >
+                <label class="form-check-label" for="flexCheckDefault">
+                    rol1
+                </label>
+            </div>
+            <div class="form-check col-lg-4">
+                <input class="form-check-input" name="opcion[]" type="checkbox" value="{{2}}"   >
+                <label class="form-check-label" for="flexCheckDefault">
+                    rol2
+                </label>
+            </div>--}}
 
+            @foreach ($roles as $rol)
+                @if (!empty($rol))
+                    <div class="form-check col-lg-4">
+                        <input class="form-check-input" name="opcion[]" type="checkbox" value="{{$rol->id}}"   >
+                        <label class="form-check-label" for="flexCheckDefault">
+                            {{$rol->nombre}}
+                        </label>
+                    </div>
+                @endif
+            @endforeach
+
+
+        </div>
+
+
+
+    </div>
 
 </div>
 
