@@ -14,7 +14,8 @@
         <a href="{{url('empleado/create')}}" class="btn btn-primary float-end"><i class="fa-solid fa-user-plus"></i> Crear </a>
         <br>
         <br>
-        <table class="table table-striped">
+
+        <table class="table table-striped container shadow-lg p-3 mb-5 bg-body rounded-4">
             <thead class="thead-light">
             <tr>
                 <th>#</th>
