@@ -49,6 +49,7 @@
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sexo" value="{{ ("F" )}}"
+
                        id="flexRadioDefault2" {{ old('sexo') == 'F' || (isset($empleado->sexo) && $empleado->sexo == 'F') ? 'checked' : '' }}>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Femenino
