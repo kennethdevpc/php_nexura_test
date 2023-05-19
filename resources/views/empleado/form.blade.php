@@ -40,14 +40,16 @@
         <div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sexo" value="{{ ("M" )}}"
-                       id="flexRadioDefault1" {{isset($empleado->sexo)?($empleado->sexo=="M"?"checked":""):old('sexo')}} >
+                       id="flexRadioDefault1" {{ old('sexo') == 'M' || (isset($empleado->sexo) && $empleado->sexo == 'M') ? 'checked' : '' }}>
+
+
                 <label class="form-check-label" for="flexRadioDefault1">
                     Masculino
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sexo" value="{{ ("F" )}}"
-                       id="flexRadioDefault2" {{isset($empleado->sexo)?($empleado->sexo=="F"?"checked":""):old('sexo')}}>
+                       id="flexRadioDefault2" {{ old('sexo') == 'F' || (isset($empleado->sexo) && $empleado->sexo == 'F') ? 'checked' : '' }}>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Femenino
                 </label>
@@ -113,13 +115,52 @@
     <div class="form-group d-flex flex-row">
         <label class="col-lg-2 px-3 text-lg-end" for="role">Roles</label>
         <div class="form-check d-flex flex-wrap">
+
+
             @foreach ($roles as $rol)
+
+               {{-- @if (!empty($empleado->roles))
+                    @foreach ($empleado->roles as $rolEmpleado)
+
+                        @if (intval($rolEmpleado->id)==($rol->id))
+                            {{$rolEmpleado->id}}
+                            <div class="form-check col-lg-4">
+                                --}}{{-- <input class="form-check-input" name="opcion[]" type="checkbox" value="{{$rol->id}}"   >--}}{{--
+                                <input class="form-check-input" type="checkbox" name="opcion[]"
+                                       value="{{ $rol->id}}" {{ in_array($rol->id, old('opcion', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{$rol->nombre}}
+                                </label>
+                            </div>
+                        @else
+                            {{$rolEmpleado->id}}
+                            <div class="form-check col-lg-4">
+                                --}}{{-- <input class="form-check-input" name="opcion[]" type="checkbox" value="{{$rol->id}}"   >--}}{{--
+                                <input class="form-check-input" type="checkbox" name="opcion[]"
+                                       value="{{ $rol->id}}" {{ in_array($rol->id, old('opcion', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{$rol->nombre}}
+                                </label>
+                            </div>
+
+                        @endif
+
+                    @endforeach
+                @endif--}}
+
                 @if (!empty($rol))
                     <div class="form-check col-lg-4">
                         {{-- <input class="form-check-input" name="opcion[]" type="checkbox" value="{{$rol->id}}"   >--}}
+                        @if(!isset($empleado->roles))
                         <input class="form-check-input" type="checkbox" name="opcion[]"
                                value="{{ $rol->id}}" {{ in_array($rol->id, old('opcion', [])) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="flexCheckDefault">
+                        @endif
+
+                        @if(isset($empleado->roles))
+                        <input class="form-check-input" type="checkbox" name="opcion[]"
+                               value="{{ $rol->id}}" {{ in_array($rol->id, $empleado->roles->pluck('id')->toArray())  ? 'checked' : '' }}>
+                        @endif
+                            <label class="form-check-label" for="flexCheckDefault">
                             {{$rol->nombre}}
                         </label>
                     </div>
