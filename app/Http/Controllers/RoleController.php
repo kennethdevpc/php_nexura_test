@@ -13,6 +13,8 @@ class RoleController extends Controller
     public function index()
     {
         //
+        $data['roles'] = Role::all(); //el nombre empleados lo puedo acceder desde las vistas
+        return view('role.index', $data);
     }
 
     /**

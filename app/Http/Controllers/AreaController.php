@@ -13,6 +13,8 @@ class AreaController extends Controller
     public function index()
     {
         //
+        $data['areas'] = Area::all(); //el nombre empleados lo puedo acceder desde las vistas
+        return view('area.index', $data);
     }
 
     /**

@@ -33,6 +33,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('empleado.index') }}">{{ __('Empleados') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('role.index') }}">{{ __('Role') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('area.index') }}">{{ __('Areas') }}</a>
+                        </li>
+
 
 
                     </ul>

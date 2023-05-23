@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,8 @@ Route::get('/', function () {
 
 
 Route::resource('/empleado', EmpleadoController::class)->middleware('auth'); //para acceder a todos lo metodos
+Route::resource('/role', RoleController::class)->middleware('auth'); //para acceder a todos lo metodos
+Route::resource('/area', AreaController::class)->middleware('auth'); //para acceder a todos lo metodos
 
 Auth::routes(['reset'=>false]);
 
