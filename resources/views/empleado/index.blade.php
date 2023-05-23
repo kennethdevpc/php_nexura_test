@@ -37,7 +37,7 @@
                     <td class="col-1">{{$empleado->email}} </td>
                     <td class="col-1">{{$empleado->sexo}}</td>
                     <td class="col-2">{{$empleado->area?->nombre}}</td>
-                    <td class="col-1">{{$empleado->boletin}}</td>
+                    <td class="col-1">{{$empleado->boletin?$empleado->boletin:"0"}}</td>
                     <td class="col-2">{{$empleado->descripcion}}</td>
                     <td>
                         <div class="dropdown">
