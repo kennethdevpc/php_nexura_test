@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->string("sexo");
             $table->integer("boletin")->nullable();
             $table->text("descripcion");
+            $table->string("Foto")->nullable();
+
             $table->timestamps();
             //------si se tiene relacion uno a uno (un empleado tiene una sola area)
             /*$table->unsignedBigInteger('area_id')->unique();

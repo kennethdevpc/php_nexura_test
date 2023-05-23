@@ -1,7 +1,16 @@
-<div class="container shadow-lg p-3 mb-5 bg-body rounded-4">
+<div class="container shadow-lg p-1 mb-2 bg-body rounded">
 
-    <div class="container shadow p-3 mb-5 bg-body rounded">
-        <h1 class="shadow p-1 mb-5 bg-body rounded">{{$modo}} Empleado</h1>
+    <div class="container shadow p-2 mb-3 bg-body rounded">
+        <div class="shadow mb-5 pe-3 py-3 d-flex justify-content-between rounded-4">
+
+            <h1 class="  mt-1 bg-body rounded  px-3 ">{{$modo}} Empleado</h1>
+            @if(isset($empleado->Foto))
+                <img class="img-thumbnail img-fluid  vh-25 " src="{{asset('storage'.'/'.$empleado->Foto)}}" alt="Sin Foto de empleado!"
+                     width="100px">
+            @endif
+        </div>
+
+
         @if(count($errors)>0)
             <h1>Error en el formulario</h1>
             <div class="alert alert-danger " role="alert">
@@ -15,22 +24,28 @@
             </div>
 
         @endif
-        {{--@if(isset($empleado->Foto))
-            <img class="img-thumbnail img-fluid " src="{{asset('storage'.'/'.$empleado->Foto)}}" alt="" width="100px">
-        @endif--}}
+
+        <div class=" form-group d-flex flex-row">
+            <label class="col-lg-2 px-3 text-lg-end " for="Foto">Foto</label>
+            <input class="form-control" type="file" name="Foto" id="Foto"
+                   value="{{isset($empleado->Foto)?$empleado->Foto:old('Foto')}}">
+        </div>
+        <br>
+
         <div class="form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end " for="nombre">Nombre completo</label>
             <input class="form-control" type="text" name="nombre" id="nombre"
                    value="{{isset($empleado->nombre)?$empleado->nombre:old('nombre')}}">
         </div>
-
         <br>
+
         <div class="form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end" for="email">Correo electrónico</label>
             <input class="form-control " type="text" name="email" id="email"
                    value="{{isset($empleado->email)?$empleado->email:old('email')}}">
         </div>
         <br>
+
         <div class="form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end" for="sexo">Sexo</label>
             <div>
@@ -51,8 +66,8 @@
                 </div>
             </div>
         </div>
-
         <br>
+
         <div class="form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end" for="area_id">Area</label>
             {{-- <input class="form-control" type="text" name="area_id" id="area_id"
@@ -79,6 +94,7 @@
 
         </div>
         <br>
+
         <div class="form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end" for="descripcion">descripcion</label>
             {{--<input class="form-control" type="text" name="descripcion" id="descripcion"
@@ -97,12 +113,11 @@
                     Deseo recibir boletín informativo
                 </label>
             </div>
-
             {{--<input class="form-control" type="text" name="boletin" id="boletin"
                    value="{{isset($empleado->boletin)?$empleado->boletin:old('boletin')}}">--}}
         </div>
-
         <br>
+
         {{--    {{isset($empleado->roles)?($empleado->boletin=="1"?"checked":""):old('boletin')}}--}}
 
         <div class="form-group d-flex flex-row">
@@ -178,21 +193,18 @@
 
                 </div>--}}
         </div>
-
         <hr>
 
-
-        <input class="btn btn-success" type="submit" value="* {{$modo}} datos" id="Enviar">
-
-
+        <div class="d-flex flex-row justify-content-between">
+            <a class="btn btn-primary" href="{{url('empleado')}}"><i class="fas fa-arrow-left"></i> Regresar</a>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-pencil-alt"></i> {{$modo}} datos
+            </button>
+        </div>
     </div>
-    <a class="btn btn-primary" href="{{url('empleado')}}">Regresar</a>
     {{--<div class="form-group">
         <label for="Foto">Foto</label>
 
         <input class="form-control" type="file" name="Foto" id="Foto" value="{{isset($empleado->Foto)?$empleado->Foto:old('Foto')}}">
     </div>--}}
-
-    <br>
-
 </div>

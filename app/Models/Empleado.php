@@ -14,7 +14,8 @@ class Empleado extends Model
         'sexo',
         'boletin',
         'descripcion',
-        'area_id'
+        'area_id',
+        'Foto',
     ];
     protected array $translateFillable = [
         'id',

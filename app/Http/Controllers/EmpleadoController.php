@@ -7,6 +7,7 @@ use App\Models\Empleado;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadoController extends Controller
 {
@@ -53,8 +54,16 @@ class EmpleadoController extends Controller
         ];
 
 
+
+
+
+
         $this->validate($request, $campos, $mensaje);
         $dataEmployee = request()->except('_token', 'opcion');
+        if ($request->hasFile('Foto')) {
+            $dataEmployee['Foto'] = $request->file('Foto')->store('/uploads', 'public');
+        }
+
         //$empleado = Empleado::insert($dataEmployee); //no la usare ya qeu, no devuelve el modelo creado, lo que dificulta la realización de acciones adicionales con el modelo.
 
         //en lugar de eso se utiliza create() o la función fill() y save() para crear modelos en Laravel. Estas funciones utilizan los modelos de Laravel y aplican las validaciones de datos del modelo, las relaciones many-to-many y otros comportamientos definidos en el modelo
@@ -64,10 +73,7 @@ class EmpleadoController extends Controller
         $empleado = new Empleado();
         $empleado->fill($dataEmployee);
         $empleado->save();
-
         //$empleado = Empleado::create($dataEmployee);
-
-
 
         $ids_roles = $request->input('opcion');
 
@@ -80,9 +86,13 @@ class EmpleadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
         //
+
+        $empleado = Empleado::findOrFail($id);
+        return view('empleado.detail', compact('empleado'));
+
     }
 
     /**
@@ -118,6 +128,14 @@ class EmpleadoController extends Controller
         ];
         $this->validate($request, $camposx, $mensaje);
         $dataEmployee = request()->except('_token', '_method', 'opcion');
+
+        if ($request->hasFile('Foto')) {
+            $empleado = Empleado::findOrFail($id);
+            Storage::delete('public/'.$empleado->Foto);
+            $dataEmployee['Foto'] = $request->file('Foto')->store('/uploads', 'public');
+
+
+        }
 
         if ($request->boletin) {
             if ($request->boletin == "1") {
@@ -212,6 +230,21 @@ class EmpleadoController extends Controller
         if(Storage::delete('public/'.$empleado->Foto)){
             Empleado::destroy($id);
         }*/
+        $empleado = Empleado::findOrFail($id);
+        /*if(Storage::delete('public/'.$empleado->Foto)){
+            Empleado::destroy($id);
+        }*/
+
+        if ($empleado == null) {
+            return $data = ["id" => $id, "error" => "Researcher no Exist into the database"];
+        } else {
+            $rutaArchivo =('public/') . $empleado->Foto;
+            if (Storage::exists($rutaArchivo)) {
+                Storage::delete('public/'.$empleado->Foto); // borra el archivo
+            }
+           // $empleado->delete();
+        }
+
         Empleado::destroy($id);
         return redirect('empleado')->with('mensaje', '!se elimino el empleado correctamente¡');
     }

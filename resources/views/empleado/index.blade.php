@@ -31,15 +31,46 @@
             </thead>
             <tbody>
             @foreach($empleados as $empleado)
-                <tr class="">
-                    <td>{{$empleado->id}}</td>
-                    <td class="col-2">{{$empleado->nombre}}</td>
-                    <td class="col-1">{{$empleado->email}}</td>
+                <tr class="" >
+                    <td >{{$empleado->id}}</td>
+                    <td class="col-2 cursor-pointer"><a href="{{url('/empleado/'.$empleado->id)}}" class="font-weight-bold cursor-pointer" style="color: black; text-decoration: none;">{{$empleado->nombre}}</a></td>
+                    <td class="col-1">{{$empleado->email}} </td>
                     <td class="col-1">{{$empleado->sexo}}</td>
                     <td class="col-2">{{$empleado->area?->nombre}}</td>
                     <td class="col-1">{{$empleado->boletin}}</td>
                     <td class="col-2">{{$empleado->descripcion}}</td>
-                    <td class="col-3">
+                    <td>
+                        <div class="dropdown">
+                            <a href="#" class="nav-link pe-0  dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </a>
+                            <div class="dropdown-menu  dropdown-menu-arrow animated" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item d-flex cursor-pointer" href="{{url('/empleado/'.$empleado->id.'/edit')}}">
+                                    <i class="fa-solid fa-pencil d-flex align-items mr-10"></i>
+                                    <div class="fs-13"> Editar</div>
+                                </a>
+
+                                <a class="dropdown-item d-flex cursor-pointer" href="{{url('/empleado/'.$empleado->id)}}">
+                                    <i class="fa-solid fa-circle-info d-flex align-items mr-10"></i>
+                                    <div class="fs-13"> Detalle</div>
+                                </a>
+
+
+
+                                <form class="dropdown-item d-flex cursor-pointer " action="{{url('/empleado/'.$empleado->id)}}" method="post" class="d-inline">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    {{--<input class="btn btn-danger" type="submit"
+                                           onclick="return confirm('¿quieres borrar deveras?')" value="Borrar">--}}
+                                    <button type="submit" class="btn  bg-transparent p-0" onclick="return confirm('¿quieres borrar deveras?')" value="Borrar" >
+                                        <i class="fa-solid fa-trash-can"></i> Borrar
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </td>
+                   {{-- <td class="col-3">
                         <a href="{{url('/empleado/'.$empleado->id.'/edit')}}" class="btn btn-warning">
                             <i class="fa-solid fa-pen-to-square"></i>  Editar
                         </a>
@@ -47,13 +78,14 @@
                         <form action="{{url('/empleado/'.$empleado->id)}}" method="post" class="d-inline">
                             @csrf
                             {{ method_field('DELETE') }}
-                            {{--<input class="btn btn-danger" type="submit"
-                                   onclick="return confirm('¿quieres borrar deveras?')" value="Borrar">--}}
+                            --}}{{--<input class="btn btn-danger" type="submit"
+                                   onclick="return confirm('¿quieres borrar deveras?')" value="Borrar">--}}{{--
                             <button type="submit" class="btn btn-danger" onclick="return confirm('¿quieres borrar deveras?')" value="Borrar" >
                                 <i class="fa-solid fa-trash-can"></i> Borrar
                             </button>
                         </form>
-                    </td>
+
+                    </td>--}}
                 </tr>
             @endforeach
             </tbody>
