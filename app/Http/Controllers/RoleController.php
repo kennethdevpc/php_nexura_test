@@ -65,17 +65,34 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
         //
+        $role = Role::findOrFail($id);
+        return view('role.edit', compact('role'), );
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
         //
+        $campos = [
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+        ];
+        $mensaje = [
+            'required' => 'El :attribute es requerido',
+            'descripcion.required' => 'La :attribute es requerida'
+        ];
+        $this->validate($request, $campos, $mensaje);
+        $dataRole = request()->except('_token', '_method', 'descripcion');
+        // $dataRole = get_object_vars($dataRole);
+        Role::where('id', '=', $id)->update($dataRole);
+        return redirect('role')->with('mensaje', '!se actualizo el role correctamente¡');
+
     }
 
     /**
