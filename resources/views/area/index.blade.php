@@ -11,7 +11,7 @@
                 </button>
             </div>
         @endif
-        <a href="{{url('empleado/create')}}" class="btn btn-primary float-end"><i class="fa-solid fa-user-plus"></i> Crear </a>
+        <a href="{{url('area/create')}}" class="btn btn-primary float-end"><i class="fa-solid fa-user-plus"></i> Crear </a>
         <br>
         <br>
 
@@ -28,24 +28,24 @@
             @foreach($areas as $area)
                 <tr class="" >
                     <td >{{$area->id}}</td>
-                    <td class="col-4 cursor-pointer"><a href="{{url('/empleado/'.$area->id)}}" class="font-weight-bold cursor-pointer" style="color: black; text-decoration: none;">{{$area->nombre}}</a></td>
+                    <td class="col-4 cursor-pointer"><a href="{{url('/area/'.$area->id)}}" class="font-weight-bold cursor-pointer" style="color: black; text-decoration: none;">{{$area->nombre}}</a></td>
                     <td class="text-lg-end">
                         <div class="dropdown">
                             <a href="#" class="nav-link px-5 pe-0  dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">
                                 <i class="fa-solid fa-ellipsis"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end  " aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item d-flex cursor-pointer" href="{{url('/empleado/'.$area->id.'/edit')}}">
+                                <a class="dropdown-item d-flex cursor-pointer" href="{{url('/area/'.$area->id.'/edit')}}">
                                     <i class="fa-solid fa-pencil d-flex align-items mr-10"></i>
                                     <div class="fs-13"> Editar</div>
                                 </a>
 
-                                <a class="dropdown-item d-flex cursor-pointer" href="{{url('/empleado/'.$area->id)}}">
+                                <a class="dropdown-item d-flex cursor-pointer" href="{{url('/area/'.$area->id)}}">
                                     <i class="fa-solid fa-circle-info d-flex align-items mr-10"></i>
                                     <div class="fs-13"> Detalle</div>
                                 </a>
 
-                                <form class="dropdown-item d-flex cursor-pointer " action="{{url('/empleado/'.$area->id)}}" method="post" class="d-inline">
+                                <form class="dropdown-item d-flex cursor-pointer " action="{{url('/area/'.$area->id)}}" method="post" class="d-inline">
                                     @csrf
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn  bg-transparent p-0" onclick="return confirm('¿quieres borrar deveras?')" value="Borrar" >

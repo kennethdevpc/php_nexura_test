@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Area extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+    ];
     //relacion one to one
     public function empleado(){
         /*$empleado = Empleado::where('area_id',$this->id)->first();
