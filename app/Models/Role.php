@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+    ];
 
     //relacion many to many
     public function empleados(){
