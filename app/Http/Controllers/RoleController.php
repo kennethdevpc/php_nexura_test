@@ -23,6 +23,8 @@ class RoleController extends Controller
     public function create()
     {
         //
+        return view('role.create');
+
     }
 
     /**
@@ -31,14 +33,33 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
+        $campos = [
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+        ];
+        $mensaje = [
+            'required' => 'El :attribute es requerido',
+            'descripcion.required' => 'La :attribute es requerida'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+        $dataRole = request()->except('_token', 'descripcion');
+        $role = Role::create($dataRole);
+        return redirect('role')->with('mensaje', '¡role agregada con exito!');
+
+
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Role $role)
+    public function show($id)
     {
         //
+        $role = Role::findOrFail($id);
+        return view('role.detail', compact('role'));
+
     }
 
     /**
