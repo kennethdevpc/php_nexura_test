@@ -19,8 +19,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(EmpleadoSeeder::class);
         $this->call(AreaSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(EmpleadoSeeder::class); //va de ultimo ya que necesita de area para asignarle el id
+
     }
 }
