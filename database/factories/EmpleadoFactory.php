@@ -25,8 +25,9 @@ class EmpleadoFactory extends Factory
             //sino tambien se podria importando : use Faker\Generator as Faker;
             //y se colocaria por ejemplo:  'sexo' => $faker->randomElement(['m', 'f']),
             'nombre' => fake()->name(),
+            'nombre' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'sexo' => fake()->randomElement(['m', 'f']),
+            'sexo' => fake()->randomElement(['M', 'F']),
             'boletin' => fake()->randomElement([1, 0]),
             'descripcion' => $truncatedDescription,
             'Foto' => fake()->realText($maxNbChars = 10, $indexSize = 1),
