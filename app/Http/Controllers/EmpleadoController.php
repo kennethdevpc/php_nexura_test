@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Empleado;
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -58,12 +59,20 @@ class EmpleadoController extends Controller
 
 
 
-        $this->validate($request, $campos, $mensaje);
+        //$this->validate($request, $campos, $mensaje);
         $dataEmployee = request()->except('_token', 'opcion');
         if ($request->hasFile('Foto')) {
             $dataEmployee['Foto'] = $request->file('Foto')->store('/uploads', 'public');
-        }
+        }else{ //guarda imagen desde descargas
+            $urlImagen =  $request->Foto;
+            $nombreArchivo = basename($urlImagen);
+            $rutaImagen = ('./images/' . Carbon::now()->timestamp . "_" . $nombreArchivo);
+            $imageContent = file_get_contents($urlImagen);
+            $path=Storage::disk('public')->put($rutaImagen, $imageContent);
 
+            $rutaImagenEditada = substr($rutaImagen, 2);
+            $dataEmployee['Foto']=$rutaImagenEditada;
+        }
         //$empleado = Empleado::insert($dataEmployee); //no la usare ya qeu, no devuelve el modelo creado, lo que dificulta la realización de acciones adicionales con el modelo.
 
         //en lugar de eso se utiliza create() o la función fill() y save() para crear modelos en Laravel. Estas funciones utilizan los modelos de Laravel y aplican las validaciones de datos del modelo, las relaciones many-to-many y otros comportamientos definidos en el modelo
@@ -135,6 +144,24 @@ class EmpleadoController extends Controller
             $dataEmployee['Foto'] = $request->file('Foto')->store('/uploads', 'public');
 
 
+        }else{
+                //guarda imagen desde descargas
+            $url = $request->Foto;
+            if (filter_var($url, FILTER_VALIDATE_URL)) {
+                $empleado = Empleado::findOrFail($id);
+                Storage::delete('public/'.$empleado->Foto);
+                $urlImagen =  $request->Foto;
+                $nombreArchivo = basename($urlImagen);
+                $rutaImagen = ('./images/' . Carbon::now()->timestamp . "_" . $nombreArchivo);
+                $imageContent = file_get_contents($urlImagen);
+                $path=Storage::disk('public')->put($rutaImagen, $imageContent);
+
+                $rutaImagenEditada = substr($rutaImagen, 2);
+                $dataEmployee['Foto']=$rutaImagenEditada;
+
+            } else {
+                echo "$url no es una URL válida";
+            }
         }
 
         if ($request->boletin) {

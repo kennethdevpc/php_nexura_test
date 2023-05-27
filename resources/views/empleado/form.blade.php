@@ -7,6 +7,7 @@
             @if(isset($empleado->Foto))
                 <img class="img-thumbnail img-fluid  vh-25 " src="{{asset('storage'.'/'.$empleado->Foto)}}" alt="Sin Foto de empleado!"
                      width="100px">
+
             @endif
         </div>
 
@@ -28,6 +29,8 @@
         <div class=" form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end " for="Foto">Foto</label>
             <input class="form-control" type="file" name="Foto" id="Foto"
+                   value="{{isset($empleado->Foto)?$empleado->Foto:old('Foto')}}">
+            <input class="form-control" type="text" name="Foto" id="Foto"
                    value="{{isset($empleado->Foto)?$empleado->Foto:old('Foto')}}">
         </div>
         <br>
