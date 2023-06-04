@@ -34,7 +34,7 @@ class RoleController extends Controller
     {
         //
         $campos = [
-            'nombre' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
         ];
         $mensaje = [
@@ -43,7 +43,8 @@ class RoleController extends Controller
         ];
 
         $this->validate($request, $campos, $mensaje);
-        $dataRole = request()->except('_token', 'descripcion');
+        //$dataRole = request()->except('_token', 'descripcion');
+        $dataRole = request()->except('_token');
         $role = Role::create($dataRole);
         return redirect('role')->with('mensaje', '¡role agregada con exito!');
 
@@ -80,7 +81,7 @@ class RoleController extends Controller
     {
         //
         $campos = [
-            'nombre' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'descripcion' => 'required|string|max:255',
         ];
         $mensaje = [

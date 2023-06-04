@@ -28,7 +28,7 @@
             @foreach($roles as $role)
                 <tr class="" >
                     <td >{{$role->id}}</td>
-                    <td class="col-4 cursor-pointer"><a href="{{url('/role/'.$role->id)}}" class="font-weight-bold cursor-pointer" style="color: black; text-decoration: none;">{{$role->nombre}}</a></td>
+                    <td class="col-4 cursor-pointer"><a href="{{url('/role/'.$role->id)}}" class="font-weight-bold cursor-pointer" style="color: black; text-decoration: none;">{{$role->name}}</a></td>
                     <td class="text-lg-end">
                         <div class="dropdown">
                             <a href="#" class="nav-link px-5 pe-0  dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown">

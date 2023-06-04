@@ -24,9 +24,14 @@
         @endif
         <br>
         <div class="form-group d-flex flex-row">
-            <label class="col-lg-2 px-3 text-lg-end " for="nombre">Nombre completo</label>
-            <input class="form-control" type="text" name="nombre" id="nombre"
-                   value="{{isset($role->nombre)?$role->nombre:old('nombre')}}">
+            <label class="col-lg-2 px-3 text-lg-end " for="name">Nombre completo</label>
+            <input class="form-control" type="text" name="name" id="name"
+                   value="{{isset($role->name)?$role->name:old('name')}}">
+        </div>
+        <div class="form-group d-flex flex-row">
+            <label class="col-lg-2 px-3 text-lg-end " for="guard_name">guard_name completo</label>
+            <input class="form-control" type="text" name="guard_name" id="guard_name"
+                   value="{{isset($role->guard_name)?$role->guard_name:old('guard_name')}}">
         </div>
         <br>
         <div class="form-group d-flex flex-row">
