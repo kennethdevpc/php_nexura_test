@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AreaSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(EmpleadoSeeder::class); //va de ultimo ya que necesita de area para asignarle el id
 
     }
