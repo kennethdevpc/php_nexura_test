@@ -25,10 +25,15 @@ Route::resource('/empleado', EmpleadoController::class)->middleware('auth'); //p
 Route::resource('/role', RoleController::class)->middleware('auth'); //para acceder a todos lo metodos
 Route::resource('/area', AreaController::class)->middleware('auth'); //para acceder a todos lo metodos
 
-Auth::routes(['reset'=>false]);
+Auth::routes(['reset' => false]);
 
 Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
-Route::group(['middleware'=>'auth'],function (){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [EmpleadoController::class, 'index'])->name('');
 
 });
+//usuarios
+
+Route::resource('/users', '\App\Http\Controllers\UserController')
+    ->except('create', 'store', 'show')
+    ->names('users'); //para acceder a todos lo metodos

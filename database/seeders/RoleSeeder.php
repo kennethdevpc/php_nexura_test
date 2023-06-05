@@ -24,6 +24,26 @@ class RoleSeeder extends Seeder
             'name' => 'Author',
            // 'descripcion' => 'Descripcion Author',
         ]);
+        $author = Role::create([
+            'name' => 'role3',
+            // 'descripcion' => 'Descripcion Author',
+        ]);
+        $author = Role::create([
+            'name' => 'role4',
+            // 'descripcion' => 'Descripcion Author',
+        ]);
+        $author = Role::create([
+            'name' => 'role5',
+            // 'descripcion' => 'Descripcion Author',
+        ]);
+        $author = Role::create([
+            'name' => 'role6',
+            // 'descripcion' => 'Descripcion Author',
+        ]);
+        $author = Role::create([
+            'name' => 'role7',
+            // 'descripcion' => 'Descripcion Author',
+        ]);
 
        // admin:
         $permission = Permission::create([
@@ -67,6 +87,29 @@ class RoleSeeder extends Seeder
             'name' => 'areas.destroy',
             'description' => 'eliminar areas',
         ])->assignRole($admin);
+
+
+        //usuarios
+
+
+        Permission::create([
+            'name' => 'users.index',
+            'description' => 'ver users',
+        ])->assignRole($admin);
+        Permission::create([
+            'name' => 'users.create',
+            'description' => 'crear users',
+        ])->assignRole($admin);
+        Permission::create([
+            'name' => 'users.edit',
+            'description' => 'editar users',
+        ])->assignRole($admin);
+        Permission::create([
+            'name' => 'users.destroy',
+            'description' => 'eliminar users',
+        ])->assignRole($admin);
+
+
 
 
 
