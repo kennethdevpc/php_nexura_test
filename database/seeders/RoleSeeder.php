@@ -24,23 +24,23 @@ class RoleSeeder extends Seeder
             'name' => 'Author',
            // 'descripcion' => 'Descripcion Author',
         ]);
-        $author = Role::create([
+        Role::create([
             'name' => 'role3',
             // 'descripcion' => 'Descripcion Author',
         ]);
-        $author = Role::create([
+        Role::create([
             'name' => 'role4',
             // 'descripcion' => 'Descripcion Author',
         ]);
-        $author = Role::create([
+        Role::create([
             'name' => 'role5',
             // 'descripcion' => 'Descripcion Author',
         ]);
-        $author = Role::create([
+        Role::create([
             'name' => 'role6',
             // 'descripcion' => 'Descripcion Author',
         ]);
-        $author = Role::create([
+        Role::create([
             'name' => 'role7',
             // 'descripcion' => 'Descripcion Author',
         ]);

@@ -30,12 +30,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @can('admin.index')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('empleado.index') }}">{{ __('Empleados') }}</a>
                         </li>
+                        @endcan
+                        @can('admin.index')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('role.index') }}">{{ __('Role') }}</a>
                         </li>
+                        @endcan
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('area.index') }}">{{ __('Areas') }}</a>
                         </li>
@@ -53,6 +57,7 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
+
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
