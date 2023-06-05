@@ -34,10 +34,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //llenar la table intermedia
-
         $e = $user->roles()->sync($request->role);
-        return redirect('users')->with('mensaje', '¡Role establecido con exito!');
-        return redirect()->route('users.edit')
+       //return redirect('users')->with('mensaje', '¡Role establecido con exito!');
+        return redirect()->route('users.edit',$user)
             ->with('success-update', 'Role establecido con exito');
 
     }

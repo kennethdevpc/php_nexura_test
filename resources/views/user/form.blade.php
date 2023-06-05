@@ -4,8 +4,21 @@
         <div class="shadow mb-5 pe-3 py-3 d-flex justify-content-between rounded-4">
 
             <h1 class="  mt-1 bg-body rounded  px-3 ">{{$modo}} usuario</h1>
+            <div class="  mt-0 bg-body rounded  px-0 ">
+                @if(Session('success-update'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        {{Session::get('success-update')}}
+                        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                            <span arial-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+            </div>
 
         </div>
+{{--        @if(Session::has('mensaje'))--}}
+{{--        @if(Session::has('success-update'))--}}
+
 
 
         @if(count($errors)>0)
@@ -19,11 +32,9 @@
                     @endforeach
                 </ul>
             </div>
-
         @endif
 
 
-        <br>
 
         <div class="form-group d-flex flex-row">
             <label class="col-lg-2 px-3 text-lg-end " for="id">id</label>
@@ -63,6 +74,10 @@
                                 <input class="form-check-input" type="checkbox" name="role[]"
                                        value="{{ $rol->id}}" {{ in_array($rol->id, $user->roles->pluck('id')->toArray())  ? 'checked' : '' }}>
                             @endif
+                            {{--<input class="form-check-input" type="checkbox" name="role[]"
+                                   value="{{ $rol->id}}" {{ $user->roles->contains($rol->id)  ? 'checked' : '' }}>
+--}}
+
                             <label class="form-check-label" for="flexCheckDefault">
                                 {{$rol->name}}
                             </label>
